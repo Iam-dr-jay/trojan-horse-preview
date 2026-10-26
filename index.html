@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">PRESTIGE — Sovereign Luxury & AI Private Concierge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0A0A0A',
+            champagne: '#D4AF37',
+            champagneLight: '#F3E5AB',
+            champagneDark: '#997A15',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0A0A0A;
+      color: #F5F5F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF6D6 0%, #D4AF37 50%, #9A7B1C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-button {
+      background: linear-gradient(135deg, #E5C158 0%, #D4AF37 55%, #B38B22 100%);
+      color: #0A0A0A;
+      box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.45);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gold-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px -5px rgba(212, 175, 55, 0.7);
+    }
+    .ambient-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+    }
+    @keyframes pulseGold {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.15); }
+    }
+    .pulse-dot {
+      animation: pulseGold 2.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#0A0A0A] text-zinc-100 antialiased selection:bg-[#D4AF37] selection:text-black">
+
+  <!-- Ambient Luxury Spotlight -->
+  <div class="fixed inset-0 pointer-events-none ambient-glow z-0"></div>
+
+  <!-- Dynamic Prototype Customizer Bar (Floating Top Telemetry Banner) -->
+  <div class="relative z-30 border-b border-[#D4AF37]/20 bg-black/80 backdrop-blur-md px-4 py-2 text-xs font-mono text-zinc-400">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#D4AF37] pulse-dot"></span>
+        <span class="text-[#D4AF37] uppercase tracking-widest font-semibold">Trojan Horse Zero-Second Engine</span>
+        <span class="hidden sm:inline text-zinc-500">|</span>
+        <span id="telemetry-params" class="text-zinc-300">Active Profile: Loading...</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-zinc-500 hidden md:inline">Instant Niche Switch:</span>
+        <a href="?brand=Prestige%20Lounge&niche=vip" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">VIP Lounge</a>
+        <a href="?brand=Admiralty%20Penthouse&niche=shortlet" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">Shortlet</a>
+        <a href="?brand=Eko%20Superyachts&niche=yacht" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">Yacht/Exotics</a>
+        <a href="?brand=Aura%20Aesthetics&niche=medspa" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">MedSpa</a>
+        <a href="?brand=Krown%20Atelier&niche=streetwear" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">Streetwear</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-20 backdrop-blur-xl bg-[#0A0A0A]/75 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg glass-pill flex items-center justify-center text-[#D4AF37] font-serif font-bold text-xl tracking-wider shadow-inner" id="nav-monogram">
+          P
+        </div>
+        <div>
+          <span id="nav-brand-title" class="font-serif text-2xl font-bold tracking-wider uppercase text-white block leading-none">
+            PRESTIGE LOUNGE
+          </span>
+          <span id="nav-brand-subtitle" class="text-[10px] font-mono uppercase tracking-[0.28em] text-[#D4AF37]">
+            PRIVATE CONCIERGE & RESERVATIONS
+          </span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm text-zinc-300 font-medium">
+        <a href="#experience" class="hover:text-[#D4AF37] transition">The Experience</a>
+        <a href="#concierge" class="hover:text-[#D4AF37] transition">AI Concierge</a>
+        <a href="#featured" class="hover:text-[#D4AF37] transition">Private Catalogue</a>
+        <a href="#roi" class="hover:text-[#D4AF37] transition">24/7 Automation</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="focusConcierge()" class="gold-button font-semibold text-xs sm:text-sm uppercase tracking-wider px-5 py-3 rounded-full">
+          <span id="nav-cta-text">Instant VIP Booking</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Hero Section + Interactive AI Concierge Split -->
+  <main class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Dynamic Hero Copy -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+          <span class="w-2 h-2 rounded-full bg-[#D4AF37]"></span>
+          <span id="hero-badge">BESPOKE DIGITAL FLAGSHIP • ZERO-WAIT BOOKING</span>
+        </div>
+
+        <h1 id="hero-headline" class="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.06] tracking-tight text-white">
+          Elevate <span class="gold-gradient-text italic">Prestige Lounge</span> Into An Autonomous 24/7 VIP Magnet.
+        </h1>
+
+        <p id="hero-subheadline" class="text-zinc-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
+          Stop losing high-net-worth reservations to slow WhatsApp replies and generic Linktrees. Your bespoke AI Private Concierge qualifies guests, showcases table minimums, and locks in deposits while you sleep.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <button onclick="triggerQuickPrompt(0)" class="gold-button px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest flex items-center gap-3">
+            <span id="hero-primary-cta">Test Live AI Concierge</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </button>
+          <a href="#featured" class="glass-card px-7 py-4 rounded-full text-sm font-medium text-zinc-200 hover:border-[#D4AF37] hover:text-[#D4AF37] transition">
+            Explore Curated Tiers
+          </a>
+        </div>
+
+        <!-- Luxury Metrics Strip -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          <div class="glass-card p-4 rounded-2xl">
+            <div class="text-2xl sm:text-3xl font-serif font-bold text-[#D4AF37]" id="metric-1-val">0.8 sec</div>
+            <div class="text-xs text-zinc-400 uppercase tracking-wider mt-1" id="metric-1-label">VIP Response Speed</div>
+          </div>
+          <div class="glass-card p-4 rounded-2xl">
+            <div class="text-2xl sm:text-3xl font-serif font-bold text-white" id="metric-2-val">+310%</div>
+            <div class="text-xs text-zinc-400 uppercase tracking-wider mt-1" id="metric-2-label">Direct Conversion Lift</div>
+          </div>
+          <div class="glass-card p-4 rounded-2xl">
+            <div class="text-2xl sm:text-3xl font-serif font-bold text-[#D4AF37]" id="metric-3-val">24/7/365</div>
+            <div class="text-xs text-zinc-400 uppercase tracking-wider mt-1" id="metric-3-label">WhatsApp & Web Sync</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive AI Concierge Chat Widget Preview -->
+      <div id="concierge" class="lg:col-span-5">
+        <div class="glass-card rounded-3xl p-6 sm:p-7 relative overflow-hidden border border-[#D4AF37]/40">
+          <!-- Top Accent Bar -->
+          <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#6E5511] flex items-center justify-center text-black font-serif font-bold text-lg" id="chat-avatar">
+                  P
+                </div>
+                <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 ring-2 ring-[#0A0A0A]"></span>
+              </div>
+              <div>
+                <h3 id="chat-widget-title" class="font-semibold text-white text-sm tracking-wide">
+                  Prestige Lounge AI Concierge
+                </h3>
+                <p id="chat-widget-status" class="text-xs text-[#D4AF37] font-mono">
+                  ● Sovereign Neural Desk — Online
+                </p>
+              </div>
+            </div>
+            <span class="text-[11px] font-mono uppercase px-2.5 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
+              Live Demo
+            </span>
+          </div>
+
+          <!-- Chat Messages Feed -->
+          <div id="chat-messages" class="space-y-4 h-[320px] overflow-y-auto pr-1 text-sm scroll-smooth">
+            <!-- Dynamically populated by JS -->
+          </div>
+
+          <!-- Quick Action Prompts -->
+          <div class="mt-4 pt-3 border-t border-white/10">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2">
+              Tap to simulate client inquiry:
+            </p>
+            <div id="quick-prompts" class="flex flex-wrap gap-2 mb-3">
+              <!-- Populated dynamically -->
+            </div>
+
+            <!-- Custom Input Box -->
+            <form id="chat-form" onsubmit="handleUserChat(event)" class="flex items-center gap-2">
+              <input
+                id="chat-input"
+                type="text"
+                placeholder="Ask the AI Concierge anything..."
+                class="w-full bg-black/60 border border-white/15 focus:border-[#D4AF37] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 outline-none transition"
+              />
+              <button
+                type="submit"
+                class="gold-button px-4 py-3 rounded-xl font-semibold text-xs uppercase tracking-wider shrink-0"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Curated Catalogue / Tier Showcase Section -->
+    <section id="featured" class="mt-24">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-[0.25em] text-[#D4AF37]" id="catalogue-eyebrow">
+            SIGNATURE INVENTORY & TIERS
+          </span>
+          <h2 class="font-serif text-3xl sm:text-5xl text-white font-semibold mt-2" id="catalogue-heading">
+            Curated exclusively for <span class="gold-gradient-text italic">Prestige Lounge</span>
+          </h2>
+        </div>
+        <p class="text-sm text-zinc-400 max-w-md" id="catalogue-subtext">
+          Every package below is pre-wired into your AI Concierge for instant availability checks, dynamic pricing, and one-tap deposit collection.
+        </p>
+      </div>
+
+      <div id="catalogue-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Populated dynamically by JS according to niche -->
+      </div>
+    </section>
+
+    <!-- Why Upgrade Section -->
+    <section id="roi" class="mt-24 glass-card rounded-3xl p-8 sm:p-12 border border-[#D4AF37]/30">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="text-xs font-mono uppercase tracking-[0.25em] text-[#D4AF37]">
+            DEPLOY THIS ARCHITECTURE IN 48 HOURS
+          </span>
+          <h3 class="font-serif text-3xl sm:text-4xl text-white font-semibold">
+            Ready to claim <span id="footer-brand-highlight" class="gold-gradient-text italic">Prestige Lounge</span>’s private digital flagship?
+          </h3>
+          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+            This live prototype was custom-compiled for <strong id="footer-brand-bold" class="text-white">Prestige Lounge</strong>. We integrate directly with your WhatsApp Business, Instagram DM funnel, and payment gateway so no VIP client ever waits again.
+          </p>
+        </div>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
+          <button onclick="focusConcierge()" class="gold-button py-4 px-6 rounded-full font-semibold text-sm uppercase tracking-widest text-center">
+            Activate Full Deployment
+          </button>
+          <div class="text-center text-xs font-mono text-zinc-400">
+            Turnkey Setup • Custom Domain • 24/7 AI Desk
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 py-8 text-center text-xs text-zinc-500 font-mono">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 <span id="copyright-brand" class="text-zinc-300">PRESTIGE LOUNGE</span>. Powered by Sovereign Luxury Architecture.
+      </div>
+      <div class="text-[#D4AF37]">
+        Dynamic URL Engine: <code class="text-zinc-300">?brand=YourBrand&amp;niche=vip|shortlet|yacht|medspa|streetwear</code>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JS Dynamic URL Parameter Injection Engine -->
+  <script>
+    const NICHE_CONFIGS = {
+      vip: {
+        label: 'VIP Lounge & Nightlife',
+        subtitle: 'PRIVATE TABLE CONCIERGE & BOTTLE SERVICE',
+        badge: 'VICTORIA ISLAND & LEKKI • ZERO-WAIT VIP DESK',
+        cta: 'Reserve VVIP Table',
+        headlineTemplate: (brand) => `Elevate <span class="gold-gradient-text italic">${brand}</span> Into An Autonomous 24/7 VIP Table Magnet.`,
+        subheadline: 'Stop losing high-net-worth table bookings to slow WhatsApp replies. Your bespoke AI Nightlife Concierge qualifies VVIP guests, presents bottle parades, and locks in table deposits automatically.',
+        greeting: (brand) => `Welcome to **${brand}** Private VVIP Desk. Looking to secure an Executive Cabana, VVIP Section, or bespoke Ace of Spades bottle parade for tonight?`,
+        prompts: [
+          { q: 'Book VVIP Table for 8 tonight', a: (b) => `Right away. At **${b}**, our VVIP Sovereign Section seats 10 guests with a ₦2,500,000 minimum spend (includes 3× Don Julio 1942 or 2× Dom Pérignon Luminous + private security escort). Shall I generate your instant reservation pass?` },
+          { q: 'View Bottle Menu & Minimums', a: (b) => `**${b}** Signature Tiers:\n• Gold Lounge Table (6 Guests): ₦1.2M min spend\n• VVIP Sovereign Booth (10 Guests): ₦2.5M min spend\n• Chairman's Penthouse Skybox (15 Guests): ₦5.0M min spend. Which tier suits your entourage?` },
+          { q: 'Arrange Chauffeur & Security', a: (b) => `We provide complimentary armed escort & Maybach/G-Wagon arrival coordination for Chairman Skybox bookings at **${b}**. Share your pickup coordinates in Victoria Island or Lekki Phase 1 to dispatch.` }
+        ],
+        cards: [
+          { tag: 'MOST POPULAR', title: 'VVIP Sovereign Booth', price: '₦2,500,000 Min.', desc: 'Prime elevated sightlines, dedicated butler, custom LED bottle parade, and priority valet entry for 10 guests.' },
+          { tag: 'ULTRA EXCLUSIVE', title: 'Chairman’s Skybox', price: '₦5,000,000 Min.', desc: 'Private sound-isolated glass suite, private bartender, 15 VVIP wristbands, and complimentary security detail.' },
+          { tag: 'INTIMATE LUXURY', title: 'Gold Velvet Table', price: '₦1,200,000 Min.', desc: 'Immediate floor proximity, curated cognac & champagne pairing, and zero-queue fast-track admission for 6.' }
+        ]
+      },
+      shortlet: {
+        label: 'Luxury Shortlet & Penthouses',
+        subtitle: 'EXECUTIVE RESIDENCES & PRIVATE PENTHOUSES',
+        badge: 'LEKKI PHASE 1 & IKOYI • DIRECT BOOKING ENGINE',
+        cta: 'Check Suite Availability',
+        headlineTemplate: (brand) => `Turn <span class="gold-gradient-text italic">${brand}</span> Into A 100% Occupancy Direct-Booking Empire.`,
+        subheadline: 'Eliminate third-party commission leakage and slow DM inquiries. Your 24/7 AI Property Concierge verifies guest IDs, showcases 4K walkthroughs, and collects instant nightly deposits.',
+        greeting: (brand) => `Good evening. Welcome to **${brand}** Private Residences. Are you looking to book a Waterfront Penthouse, a 4-Bed Pool Villa in Lekki Phase 1, or an extended executive stay?`,
+        prompts: [
+          { q: 'Check Weekend Penthouse Availability', a: (b) => `Our Signature Sky Penthouse at **${b}** (Rooftop Infinity Pool, PS5, Starlink Fiber, 24/7 Power & Private Chef option) is available this Friday–Monday at ₦450,000/night. Would you like me to lock those dates?` },
+          { q: 'What amenities are included?', a: (b) => `Every **${b}** residence features dual 24/7 power redundancy, 250Mbps Starlink Wi-Fi, biometric smart locks, daily housekeeping, and optional airport pickup in a Prado SUV.` },
+          { q: 'Book 7-Day Executive Package', a: (b) => `7-day stays at **${b}** unlock a 15% preferred corporate rate plus complimentary airport transfer and private chef breakfast. Shall I send the instant invoice link to your WhatsApp?` }
+        ],
+        cards: [
+          { tag: 'FLAGSHIP SUITE', title: 'Skyline Infinity Penthouse', price: '₦450,000 / Night', desc: '4-Bedroom duplex penthouse with private rooftop plunge pool, cinema room, Starlink fiber, and 24/7 uniform security.' },
+          { tag: 'DIPLOMATIC TIER', title: 'Ikoyi Waterfront Villa', price: '₦750,000 / Night', desc: 'Private jetty access, bullet-resistant glazing, in-house chef quarters, and luxury chauffeur on standby.' },
+          { tag: 'CORPORATE LOFT', title: 'Admiralty Executive Loft', price: '₦220,000 / Night', desc: '2-Bedroom designer smart apartment in Lekki Phase 1 with ergonomic workspace, Sonos audio, and gym access.' }
+        ]
+      },
+      yacht: {
+        label: 'Superyacht & Exotic Rentals',
+        subtitle: 'PRIVATE CHARTERS & ARMORED EXOTIC FLEET',
+        badge: 'LAGOS LAGOON & FIVE COWRIES • PRIVATE FLEET DESK',
+        cta: 'Charter Yacht / Exotic',
+        headlineTemplate: (brand) => `Command The Waters & Streets With <span class="gold-gradient-text italic">${brand}</span>’s Instant Charter Desk.`,
+        subheadline: 'High-net-worth charter clients book on impulse. Give them a zero-friction digital showroom that quotes yacht cruise hours, G-Wagon convoys, and jet transfers in 0.8 seconds.',
+        greeting: (brand) => `Welcome aboard **${brand}**. Would you like to charter a 75ft Flybridge Yacht from Five Cowries Terminal, or reserve an armored G63 AMG + Mopols escort for today?`,
+        prompts: [
+          { q: 'Sunset Yacht Charter for 15 Guests', a: (b) => `Our 75ft Azimut Flybridge at **${b}** is available for a 4-hour Lagoon & Tarkwa Bay sunset cruise at ₦3,200,000 (includes Captain, crew, jet ski, DJ deck & chilled champagne). Ready to reserve your boarding slot?` },
+          { q: 'Rent 2025 G63 AMG + Escort', a: (b) => `**${b}** can deploy a 2025 Mercedes-AMG G63 with professional chauffeur and armed Hilux escort within 90 minutes across Victoria Island, Ikoyi, or Murtala Muhammed Airport at ₦850,000/day.` },
+          { q: 'Weekend Private Beach Package', a: (b) => `Our Sovereign Island Charter includes round-trip 68ft yacht cruise, private beachfront cabana, personal chef grill, and 2 jet skis for ₦4,500,000 all-inclusive.` }
+        ],
+        cards: [
+          { tag: 'NAUTICAL FLAGSHIP', title: '75ft Azimut Flybridge Yacht', price: '₦3,200,000 / 4 Hrs', desc: '3 luxury cabins, open sundeck, onboard sound system, complimentary jet ski, and full hospitality crew.' },
+          { tag: 'CONVOY PROTOCOL', title: '2025 G63 AMG + Escort Detail', price: '₦850,000 / Day', desc: 'Executive chauffeur, priority airport tarmac clearance option, and dedicated escort vehicle.' },
+          { tag: 'BESPOKE VOYAGE', title: 'Rolls-Royce Cullinan Black Badge', price: '₦1,800,000 / Day', desc: 'Starlight headliner, champagne cooler, and white-glove chauffeur service for ultra-VIP occasions.' }
+        ]
+      },
+      medspa: {
+        label: 'Luxury Aesthetic MedSpa',
+        subtitle: 'BESPOKE AESTHETICS & LONGEVITY CLINIC',
+        badge: 'LONDON • MIAMI • LAGOS • CLINICAL CONCIERGE',
+        cta: 'Book Private Consultation',
+        headlineTemplate: (brand) => `Transform <span class="gold-gradient-text italic">${brand}</span> Into An Automated High-Ticket Patient Funnel.`,
+        subheadline: 'Replace generic booking links with an intelligent Clinical Concierge that pre-qualifies aesthetic patients, recommends high-margin treatment protocols, and books paid consultations 24/7.',
+        greeting: (brand) => `Welcome to **${brand}** Aesthetic & Longevity Sanctuary. Are you exploring non-surgical facial sculpting, Morpheus8 skin tightening, or our signature IV cellular rejuvenation protocol?`,
+        prompts: [
+          { q: 'Book Full-Face Liquid Lift Consult', a: (b) => `At **${b}**, our Signature Glass-Skin & Structural Contouring Protocol ($1,850 / ₦2.5M) includes 3D dermal mapping and bespoke biostimulators. We have two private clinical slots open this Thursday. Shall I reserve one?` },
+          { q: 'Compare Morpheus8 vs Exosome Therapy', a: (b) => `Our Lead Medical Director at **${b}** combines RF Microneedling with pure stem-cell exosomes for 3x faster collagen remodeling and zero downtime. Would you like our treatment dossier sent to your phone?` },
+          { q: 'VIP Discreet Entry & Recovery', a: (b) => `**${b}** offers private rear-courtyard arrival and dedicated post-procedure LED oxygen recovery suites for high-profile clients.` }
+        ],
+        cards: [
+          { tag: 'SIGNATURE PROTOCOL', title: '3D Structural Liquid Lift', price: '$1,850 / Session', desc: 'Bespoke polynucleotides, premium hyaluronic sculpting, and ultrasonic mapping for natural contour restoration.' },
+          { tag: 'REGENERATIVE', title: 'Morpheus8 + Exosome Infusion', price: '$2,400 / Package', desc: 'Deep subdermal radiofrequency remodeling paired with 10 billion regenerative exosomes.' },
+          { tag: 'LONGEVITY', title: 'NAD+ Cellular Revival IV Suite', price: '$650 / Infusion', desc: 'High-dose NAD+, glutathione, and peptide therapy administered in a zero-gravity private recovery lounge.' }
+        ]
+      },
+      streetwear: {
+        label: 'Luxury Streetwear & Limited Drops',
+        subtitle: 'ARCHIVE ATELIER & PRIVATE ALLOCATIONS',
+        badge: 'LIMITED EDITION DROP • VIP VAULT ACCESS',
+        cta: 'Unlock Vault Access',
+        headlineTemplate: (brand) => `Power <span class="gold-gradient-text italic">${brand}</span>’s Next Drop With Zero-Second VIP Allocations.`,
+        subheadline: 'Turn casual visitors into die-hard collectors. Your AI Styling & Drop Concierge sizes heavyweight silhouettes, unlocks private archive pieces, and recovers high-AOV carts automatically.',
+        greeting: (brand) => `Welcome to the **${brand}** Private Vault. Looking to secure early allocation for Capsule 04, check heavyweight sizing specs, or claim a VIP collector bundle?`,
+        prompts: [
+          { q: 'Unlock Early Access to Capsule 04', a: (b) => `Verified. As a VIP guest at **${b}**, you can lock in the 600GSM Boxy Hoodie + Hand-Distressed Cargo Bundle ($420 / ₦580,000) before the public drop closes. Only 14 numbered units remain.` },
+          { q: 'Sizing Guide for 600GSM Hoodie', a: (b) => `**${b}** silhouettes feature a cropped, boxy luxury drape. If you are 5'10"–6'1", Size L gives the signature oversized runway fit. Want me to reserve Size L in Obsidian Black?` },
+          { q: 'Request Same-Day VIP Courier', a: (b) => `Orders placed via the **${b}** Private Vault include serialized metal authenticity tags and same-day armored courier in Lagos / 48-hr DHL Express worldwide.` }
+        ],
+        cards: [
+          { tag: 'NUMBERED 1 OF 50', title: '600GSM Heavyweight Archive Hoodie', price: '$260 / ₦360,000', desc: 'Custom milled organic cotton, antique silver hardware, vintage enzyme wash, and NFC authenticity chip.' },
+          { tag: 'COLLECTOR BUNDLE', title: 'Full Monolith Runway Set', price: '$495 / ₦680,000', desc: 'Includes Heavyweight Boxy Hoodie, Articulated Parachute Cargos, and Sterling Silver Branded Dogtag.' },
+          { tag: 'PRIVATE VAULT', title: 'Bespoke Leather Varsity Jacket', price: '$1,150 / ₦1,580,000', desc: 'Full-grain Italian calfskin sleeves, heavyweight Melton wool body, and custom bullion embroidery.' }
+        ]
+      }
+    };
+
+    function formatBrandName(rawBrand) {
+      if (!rawBrand) return 'Prestige Lounge';
+      // Clean URL-friendly slugs like "prestigelounge" or "prestige-lounge" or "Prestige Lounge"
+      const cleaned = decodeURIComponent(rawBrand).replace(/[-_]+/g, ' ').trim();
+      if (!cleaned.includes(' ') && cleaned.length > 8) {
+        // Split common compound words like prestigelounge, ekoyachts, etc.
+        const splitWords = cleaned.replace(/(lounge|shortlet|homes|suites|yacht|yachts|motors|medspa|clinic|aesthetics|atelier|club|villas|penthouse|luxury)/gi, ' $1').trim();
+        return splitWords.replace(/\b\w/g, c => c.toUpperCase());
+      }
+      return cleaned.replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function detectNicheKey(rawNiche) {
+      if (!rawNiche) return 'vip';
+      const n = rawNiche.toLowerCase();
+      if (n.includes('shortlet') || n.includes('real') || n.includes('home') || n.includes('penthouse') || n.includes('villa')) return 'shortlet';
+      if (n.includes('yacht') || n.includes('car') || n.includes('rental') || n.includes('boat') || n.includes('charter')) return 'yacht';
+      if (n.includes('medspa') || n.includes('spa') || n.includes('clinic') || n.includes('aesthetic')) return 'medspa';
+      if (n.includes('street') || n.includes('shop') || n.includes('drop') || n.includes('fashion') || n.includes('apparel')) return 'streetwear';
+      return 'vip';
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const activeBrand = formatBrandName(params.get('brand') || 'Prestige Lounge');
+    const activeNicheKey = detectNicheKey(params.get('niche') || 'vip');
+    const activeConfig = NICHE_CONFIGS[activeNicheKey];
+
+    function appendMessage(sender, text) {
+      const container = document.getElementById('chat-messages');
+      const wrapper = document.createElement('div');
+      const formattedHtml = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#D4AF37] font-semibold">$1</strong>').replace(/\n/g, '<br/>');
+
+      if (sender === 'ai') {
+        wrapper.className = 'flex items-start gap-2.5';
+        wrapper.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] font-serif text-xs font-bold shrink-0 mt-0.5">
+            ${activeBrand.charAt(0)}
+          </div>
+          <div class="bg-white/[0.07] border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3 text-zinc-200 leading-relaxed max-w-[88%]">
+            ${formattedHtml}
+          </div>
+        `;
+      } else {
+        wrapper.className = 'flex justify-end';
+        wrapper.innerHTML = `
+          <div class="bg-[#D4AF37] text-black font-medium rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[82%] shadow-md">
+            ${formattedHtml}
+          </div>
+        `;
+      }
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function triggerQuickPrompt(index) {
+      const item = activeConfig.prompts[index] || activeConfig.prompts[0];
+      appendMessage('user', item.q);
+      setTimeout(() => {
+        appendMessage('ai', item.a(activeBrand));
+      }, 280);
+    }
+
+    function handleUserChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const val = input.value.trim();
+      if (!val) return;
+      appendMessage('user', val);
+      input.value = '';
+      setTimeout(() => {
+        appendMessage(
+          'ai',
+          `Confirmed. As **${activeBrand}**'s 24/7 AI Concierge, I have logged your request ("${val}") and prepared a priority VIP booking pass. Shall I forward the instant confirmation link to your WhatsApp now?`
+        );
+      }, 320);
+    }
+
+    function focusConcierge() {
+      document.getElementById('concierge').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('chat-input').focus();
+    }
+
+    function initTrojanHorse() {
+      // Page & Nav
+      document.getElementById('page-title').textContent = `${activeBrand} — ${activeConfig.label} & AI Concierge`;
+      document.getElementById('telemetry-params').textContent = `brand="${activeBrand}" • niche="${activeConfig.label}"`;
+      document.getElementById('nav-monogram').textContent = activeBrand.charAt(0).toUpperCase();
+      document.getElementById('nav-brand-title').textContent = activeBrand.toUpperCase();
+      document.getElementById('nav-brand-subtitle').textContent = activeConfig.subtitle;
+      document.getElementById('nav-cta-text').textContent = activeConfig.cta;
+
+      // Hero
+      document.getElementById('hero-badge').textContent = activeConfig.badge;
+      document.getElementById('hero-headline').innerHTML = activeConfig.headlineTemplate(activeBrand);
+      document.getElementById('hero-subheadline').textContent = activeConfig.subheadline;
+
+      // Chat Widget
+      document.getElementById('chat-avatar').textContent = activeBrand.charAt(0).toUpperCase();
+      document.getElementById('chat-widget-title').textContent = `${activeBrand} AI Concierge`;
+
+      const chatContainer = document.getElementById('chat-messages');
+      chatContainer.innerHTML = '';
+      appendMessage('ai', activeConfig.greeting(activeBrand));
+
+      // Quick Prompts
+      const promptsContainer = document.getElementById('quick-prompts');
+      promptsContainer.innerHTML = '';
+      activeConfig.prompts.forEach((p, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => triggerQuickPrompt(idx);
+        btn.className = 'text-xs px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-[#D4AF37]/20 border border-[#D4AF37]/30 text-zinc-200 hover:text-[#D4AF37] transition text-left';
+        btn.textContent = p.q;
+        promptsContainer.appendChild(btn);
+      });
+
+      // Catalogue Cards
+      document.getElementById('catalogue-heading').innerHTML = `Curated exclusively for <span class="gold-gradient-text italic">${activeBrand}</span>`;
+      const grid = document.getElementById('catalogue-grid');
+      grid.innerHTML = '';
+      activeConfig.cards.forEach((c, idx) => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-3xl p-7 flex flex-col justify-between hover:border-[#D4AF37]/60 transition group';
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono mb-4">
+              <span class="px-3 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">${c.tag}</span>
+              <span class="text-zinc-400">0${idx + 1}</span>
+            </div>
+            <h4 class="font-serif text-2xl text-white font-semibold mb-2 group-hover:text-[#D4AF37] transition">${c.title}</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-6">${c.desc}</p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-mono uppercase text-zinc-500 block">Direct Rate</span>
+              <span class="font-serif text-xl font-bold text-[#D4AF37]">${c.price}</span>
+            </div>
+            <button onclick="triggerQuickPrompt(${idx % activeConfig.prompts.length})" class="px-4 py-2 rounded-full border border-[#D4AF37]/40 text-xs font-mono uppercase text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition">
+              Reserve →
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Footer
+      document.getElementById('footer-brand-highlight').textContent = activeBrand;
+      document.getElementById('footer-brand-bold').textContent = activeBrand;
+      document.getElementById('copyright-brand').textContent = activeBrand.toUpperCase();
+    }
+
+    initTrojanHorse();
+  </script>
+</body>
+</html>
