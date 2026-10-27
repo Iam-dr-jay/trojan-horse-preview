@@ -85,12 +85,13 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="inline-block w-2 h-2 rounded-full bg-[#D4AF37] pulse-dot"></span>
-        <span class="text-[#D4AF37] uppercase tracking-widest font-semibold">Trojan Horse Zero-Second Engine</span>
+        <span id="top-bar-title" class="text-[#D4AF37] uppercase tracking-widest font-semibold">Trojan Horse Zero-Second Engine</span>
         <span class="hidden sm:inline text-zinc-500">|</span>
         <span id="telemetry-params" class="text-zinc-300">Active Profile: Loading...</span>
       </div>
-      <div class="flex items-center gap-2">
-        <span class="text-zinc-500 hidden md:inline">Instant Niche Switch:</span>
+      <div class="flex items-center flex-wrap gap-1.5">
+        <span class="text-zinc-500 hidden md:inline">Switch Mode:</span>
+        <a href="?mode=blacknovember" class="px-2.5 py-0.5 rounded bg-[#D4AF37] text-black font-semibold hover:opacity-90 transition">★ Black November VIP Vault</a>
         <a href="?brand=Prestige%20Lounge&niche=vip" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">VIP Lounge</a>
         <a href="?brand=Admiralty%20Penthouse&niche=shortlet" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">Shortlet</a>
         <a href="?brand=Eko%20Superyachts&niche=yacht" class="px-2 py-0.5 rounded border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 text-[#D4AF37] transition">Yacht/Exotics</a>
@@ -118,16 +119,15 @@
       </div>
 
       <nav class="hidden md:flex items-center gap-8 text-sm text-zinc-300 font-medium">
-        <a href="#experience" class="hover:text-[#D4AF37] transition">The Experience</a>
-        <a href="#concierge" class="hover:text-[#D4AF37] transition">AI Concierge</a>
-        <a href="#featured" class="hover:text-[#D4AF37] transition">Private Catalogue</a>
-        <a href="#roi" class="hover:text-[#D4AF37] transition">24/7 Automation</a>
+        <a href="#featured" class="hover:text-[#D4AF37] transition" id="nav-link-1">Private Catalogue</a>
+        <a href="#concierge" class="hover:text-[#D4AF37] transition" id="nav-link-2">AI Concierge</a>
+        <a href="#roi" class="hover:text-[#D4AF37] transition" id="nav-link-3">VIP Privileges</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <button onclick="focusConcierge()" class="gold-button font-semibold text-xs sm:text-sm uppercase tracking-wider px-5 py-3 rounded-full">
+        <a id="nav-cta-btn" href="#featured" onclick="handleNavCta(event)" class="gold-button font-semibold text-xs sm:text-sm uppercase tracking-wider px-5 py-3 rounded-full inline-block">
           <span id="nav-cta-text">Instant VIP Booking</span>
-        </button>
+        </a>
       </div>
     </div>
   </header>
@@ -153,13 +153,13 @@
 
         <!-- Action Buttons -->
         <div class="flex flex-wrap items-center gap-4 pt-2">
-          <button onclick="triggerQuickPrompt(0)" class="gold-button px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest flex items-center gap-3">
+          <a id="hero-primary-btn" href="#featured" onclick="handlePrimaryHeroCta(event)" class="gold-button px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest flex items-center gap-3 cursor-pointer">
             <span id="hero-primary-cta">Test Live AI Concierge</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </button>
-          <a href="#featured" class="glass-card px-7 py-4 rounded-full text-sm font-medium text-zinc-200 hover:border-[#D4AF37] hover:text-[#D4AF37] transition">
+          </a>
+          <a href="#featured" id="hero-secondary-cta" class="glass-card px-7 py-4 rounded-full text-sm font-medium text-zinc-200 hover:border-[#D4AF37] hover:text-[#D4AF37] transition">
             Explore Curated Tiers
           </a>
         </div>
@@ -202,7 +202,7 @@
                 </p>
               </div>
             </div>
-            <span class="text-[11px] font-mono uppercase px-2.5 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
+            <span id="chat-badge-pill" class="text-[11px] font-mono uppercase px-2.5 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
               Live Demo
             </span>
           </div>
@@ -215,7 +215,7 @@
           <!-- Quick Action Prompts -->
           <div class="mt-4 pt-3 border-t border-white/10">
             <p class="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2">
-              Tap to simulate client inquiry:
+              Tap to simulate inquiry or bundle check:
             </p>
             <div id="quick-prompts" class="flex flex-wrap gap-2 mb-3">
               <!-- Populated dynamically -->
@@ -259,29 +259,29 @@
       </div>
 
       <div id="catalogue-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Populated dynamically by JS according to niche -->
+        <!-- Populated dynamically by JS according to niche or Black November mode -->
       </div>
     </section>
 
-    <!-- Why Upgrade Section -->
+    <!-- Why Upgrade / Black November Guarantee Section -->
     <section id="roi" class="mt-24 glass-card rounded-3xl p-8 sm:p-12 border border-[#D4AF37]/30">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div class="lg:col-span-8 space-y-4">
-          <span class="text-xs font-mono uppercase tracking-[0.25em] text-[#D4AF37]">
+          <span id="roi-eyebrow" class="text-xs font-mono uppercase tracking-[0.25em] text-[#D4AF37]">
             DEPLOY THIS ARCHITECTURE IN 48 HOURS
           </span>
-          <h3 class="font-serif text-3xl sm:text-4xl text-white font-semibold">
+          <h3 id="roi-heading" class="font-serif text-3xl sm:text-4xl text-white font-semibold">
             Ready to claim <span id="footer-brand-highlight" class="gold-gradient-text italic">Prestige Lounge</span>’s private digital flagship?
           </h3>
-          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+          <p id="roi-body" class="text-zinc-400 text-sm sm:text-base leading-relaxed">
             This live prototype was custom-compiled for <strong id="footer-brand-bold" class="text-white">Prestige Lounge</strong>. We integrate directly with your WhatsApp Business, Instagram DM funnel, and payment gateway so no VIP client ever waits again.
           </p>
         </div>
         <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
-          <button onclick="focusConcierge()" class="gold-button py-4 px-6 rounded-full font-semibold text-sm uppercase tracking-widest text-center">
+          <a id="roi-cta-btn" href="#concierge" onclick="handleNavCta(event)" class="gold-button py-4 px-6 rounded-full font-semibold text-sm uppercase tracking-widest text-center block">
             Activate Full Deployment
-          </button>
-          <div class="text-center text-xs font-mono text-zinc-400">
+          </a>
+          <div id="roi-subnote" class="text-center text-xs font-mono text-zinc-400">
             Turnkey Setup • Custom Domain • 24/7 AI Desk
           </div>
         </div>
@@ -295,13 +295,93 @@
         © 2026 <span id="copyright-brand" class="text-zinc-300">PRESTIGE LOUNGE</span>. Powered by Sovereign Luxury Architecture.
       </div>
       <div class="text-[#D4AF37]">
-        Dynamic URL Engine: <code class="text-zinc-300">?brand=YourBrand&amp;niche=vip|shortlet|yacht|medspa|streetwear</code>
+        Modes: <code class="text-zinc-300">?mode=blacknovember</code> | <code class="text-zinc-300">?brand=Client&amp;niche=vip|shortlet|yacht|medspa|streetwear</code>
       </div>
     </div>
   </footer>
 
-  <!-- Vanilla JS Dynamic URL Parameter Injection Engine -->
+  <!-- Vanilla JS Dynamic URL Parameter & Black November Storefront Engine -->
   <script>
+    const WHATSAPP_CONCIERGE_NUMBER = '2348140000000';
+
+    const BLACK_NOVEMBER_CONFIG = {
+      brandName: "Dr Jay's Store / The Roadman Luxury",
+      shortTitle: "THE ROADMAN LUXURY",
+      monogram: "R",
+      subtitle: "DR JAY'S STORE • BLACK NOVEMBER VIP VAULT",
+      badge: "BLACK NOVEMBER VIP ALLOCATION • LIMITED TO 50 NUMBERED TRUNKS",
+      cta: "Claim VIP Box on WhatsApp",
+      headlineHtml: `Dr Jay’s <span class="gold-gradient-text italic">Black November VIP Vault</span> — Sovereign Luxury & Tech Bundles.`,
+      subheadline: "Strictly limited 2026 private allocation for Lagos executives, founders, and IJGBs. Heavyweight 320–600GSM silhouettes paired with matte-black power tech, niche oud extrait, and same-day VIP dispatch.",
+      metrics: [
+        { val: "50 Units", label: "Numbered Edition Cap" },
+        { val: "Same-Day", label: "Lagos VIP Courier" },
+        { val: "100% Auth", label: "Serialized NFC Vault" }
+      ],
+      greeting: () => `Welcome to **Dr Jay's Store / The Roadman Luxury — Black November VIP Vault**. We have 3 sovereign bundles open for immediate allocation: **Tier 1: Executive Daily (₦45,000)**, **Tier 2: Roadman Drip & Tech (₦85,000)**, and **Tier 3: CEO / IJGB Bespoke Box (₦150,000)**. Which box are we holding for you today?`,
+      prompts: [
+        {
+          q: "Inspect Tier 1: Executive Daily (₦45,000)",
+          a: () => `**Tier 1 — Executive Daily (₦45,000 | Code: EXEC-45K)** includes:\n• Heavyweight 320GSM Obsidian Structured Tee\n• Matte Black RFID Carbon-Fiber Cardholder\n• Braided 100W Fast-Charge Kevlar Type-C Cable\n• Serialized Black November VIP Member Card.\nTap **"Order via WhatsApp VIP Concierge"** on Card 01 below to lock your size!`
+        },
+        {
+          q: "Inspect Tier 2: Roadman Drip & Tech (₦85,000)",
+          a: () => `**Tier 2 — Roadman Drip & Tech (₦85,000 | Code: DRIP-85K)** is our #1 executive bestseller:\n• Signature 500GSM Boxy Luxury Hoodie OR Tactical Cargo Pant\n• MagSafe 10,000mAh Matte-Black Aluminum Power Bank\n• Brushed Onyx Blue-Light Blocking Executive Frames\n• Custom Matte-Black Collector Packaging + Priority Lagos Courier.`
+        },
+        {
+          q: "Inspect Tier 3: CEO / IJGB Bespoke Box (₦150,000)",
+          a: () => `**Tier 3 — CEO / IJGB Bespoke Box (₦150,000 | Code: CEO-150K)** is the ultimate Detty December & C-Suite arrival trunk:\n• Full 2-Piece Luxury Heavyweight Set (600GSM Hoodie + Tailored Cargo/Sweatpant)\n• Sovereign Leather Weekender Crossbody / Dopp Kit\n• 100ml Niche Extrait de Parfum (Oud & Amber Reserve)\n• Sterling-Finish Heavy Cuban Cuff + Same-Day VIP Chauffeur Delivery (Lagos).`
+        }
+      ],
+      bundles: [
+        {
+          bundle_id: "BN-01",
+          tag: "TIER 1 • ESSENTIAL MONOCHROME",
+          title: "Executive Daily",
+          tagline: "The Essential Monochrome Carry for Lagos & London Operators",
+          price: "₦45,000",
+          code: "EXEC-45K",
+          items: [
+            "Heavyweight 320GSM Obsidian Structured Tee",
+            "Matte Black RFID Carbon-Fiber Cardholder",
+            "Braided 100W Fast-Charge Kevlar Type-C Cable",
+            "Serialized Black November VIP Member Card"
+          ],
+          waText: "Hello Dr Jay / Roadman VIP Concierge, I want to order Tier 1: [EXEC-45K] Executive Daily Bundle (₦45,000). My size is: "
+        },
+        {
+          bundle_id: "BN-02",
+          tag: "TIER 2 • #1 BESTSELLER",
+          title: "Roadman Drip & Tech",
+          tagline: "Heavyweight Streetwear Meets Sovereign Mobile Power",
+          price: "₦85,000",
+          code: "DRIP-85K",
+          items: [
+            "Signature 500GSM Boxy Luxury Hoodie or Tactical Cargo Pant",
+            "MagSafe 10,000mAh Matte-Black Aluminum Power Bank",
+            "Brushed Onyx Blue-Light Blocking Executive Frames",
+            "Custom Matte-Black Collector Packaging + Priority Lagos Courier"
+          ],
+          waText: "Hello Dr Jay / Roadman VIP Concierge, I want to order Tier 2: [DRIP-85K] Roadman Drip & Tech Bundle (₦85,000). My size is: "
+        },
+        {
+          bundle_id: "BN-03",
+          tag: "TIER 3 • SOVEREIGN TRUNK",
+          title: "CEO / IJGB Bespoke Box",
+          tagline: "The Ultimate Detty December & C-Suite Arrival Trunk",
+          price: "₦150,000",
+          code: "CEO-150K",
+          items: [
+            "Full 2-Piece Luxury Heavyweight Set (600GSM Hoodie + Tailored Cargo/Sweatpant)",
+            "Sovereign Leather Weekender Crossbody / Dopp Kit",
+            "100ml Niche Extrait de Parfum (Oud & Amber Reserve)",
+            "Sterling-Finish Heavy Cuban Cuff + Same-Day VIP Chauffeur Delivery (Lagos)"
+          ],
+          waText: "Hello Dr Jay / Roadman VIP Concierge, I want to order Tier 3: [CEO-150K] CEO / IJGB Bespoke Box (₦150,000). My size is: "
+        }
+      ]
+    };
+
     const NICHE_CONFIGS = {
       vip: {
         label: 'VIP Lounge & Nightlife',
@@ -402,10 +482,8 @@
 
     function formatBrandName(rawBrand) {
       if (!rawBrand) return 'Prestige Lounge';
-      // Clean URL-friendly slugs like "prestigelounge" or "prestige-lounge" or "Prestige Lounge"
       const cleaned = decodeURIComponent(rawBrand).replace(/[-_]+/g, ' ').trim();
       if (!cleaned.includes(' ') && cleaned.length > 8) {
-        // Split common compound words like prestigelounge, ekoyachts, etc.
         const splitWords = cleaned.replace(/(lounge|shortlet|homes|suites|yacht|yachts|motors|medspa|clinic|aesthetics|atelier|club|villas|penthouse|luxury)/gi, ' $1').trim();
         return splitWords.replace(/\b\w/g, c => c.toUpperCase());
       }
@@ -423,9 +501,12 @@
     }
 
     const params = new URLSearchParams(window.location.search);
-    const activeBrand = formatBrandName(params.get('brand') || 'Prestige Lounge');
+    const isBlackNovemberMode = (params.get('mode') || '').toLowerCase() === 'blacknovember';
+    const activeBrand = isBlackNovemberMode
+      ? BLACK_NOVEMBER_CONFIG.brandName
+      : formatBrandName(params.get('brand') || 'Prestige Lounge');
     const activeNicheKey = detectNicheKey(params.get('niche') || 'vip');
-    const activeConfig = NICHE_CONFIGS[activeNicheKey];
+    const activeConfig = isBlackNovemberMode ? BLACK_NOVEMBER_CONFIG : NICHE_CONFIGS[activeNicheKey];
 
     function appendMessage(sender, text) {
       const container = document.getElementById('chat-messages');
@@ -436,7 +517,7 @@
         wrapper.className = 'flex items-start gap-2.5';
         wrapper.innerHTML = `
           <div class="w-7 h-7 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] font-serif text-xs font-bold shrink-0 mt-0.5">
-            ${activeBrand.charAt(0)}
+            ${isBlackNovemberMode ? 'R' : activeBrand.charAt(0)}
           </div>
           <div class="bg-white/[0.07] border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3 text-zinc-200 leading-relaxed max-w-[88%]">
             ${formattedHtml}
@@ -459,7 +540,7 @@
       appendMessage('user', item.q);
       setTimeout(() => {
         appendMessage('ai', item.a(activeBrand));
-      }, 280);
+      }, 240);
     }
 
     function handleUserChat(e) {
@@ -470,11 +551,18 @@
       appendMessage('user', val);
       input.value = '';
       setTimeout(() => {
-        appendMessage(
-          'ai',
-          `Confirmed. As **${activeBrand}**'s 24/7 AI Concierge, I have logged your request ("${val}") and prepared a priority VIP booking pass. Shall I forward the instant confirmation link to your WhatsApp now?`
-        );
-      }, 320);
+        if (isBlackNovemberMode) {
+          appendMessage(
+            'ai',
+            `Locked in. I've flagged your note ("${val}") for **Dr Jay's Store VIP Dispatch Desk**. Tap any **"Order via WhatsApp VIP Concierge"** button below to finalize your size and receive instant delivery!`
+          );
+        } else {
+          appendMessage(
+            'ai',
+            `Confirmed. As **${activeBrand}**'s 24/7 AI Concierge, I have logged your request ("${val}") and prepared a priority VIP booking pass. Shall I forward the instant confirmation link to your WhatsApp now?`
+          );
+        }
+      }, 280);
     }
 
     function focusConcierge() {
@@ -482,8 +570,132 @@
       document.getElementById('chat-input').focus();
     }
 
+    function handleNavCta(e) {
+      if (isBlackNovemberMode) {
+        e.preventDefault();
+        document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        e.preventDefault();
+        focusConcierge();
+      }
+    }
+
+    function handlePrimaryHeroCta(e) {
+      if (isBlackNovemberMode) {
+        e.preventDefault();
+        document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        e.preventDefault();
+        triggerQuickPrompt(0);
+      }
+    }
+
     function initTrojanHorse() {
-      // Page & Nav
+      if (isBlackNovemberMode) {
+        // BLACK NOVEMBER VIP STOREFRONT MODE
+        document.getElementById('page-title').textContent = `${BLACK_NOVEMBER_CONFIG.brandName} — Black November VIP Vault`;
+        document.getElementById('top-bar-title').textContent = `Black November VIP Storefront Mode`;
+        document.getElementById('telemetry-params').textContent = `mode="blacknovember" • 3 High-Margin VIP Bundles Active`;
+        document.getElementById('nav-monogram').textContent = BLACK_NOVEMBER_CONFIG.monogram;
+        document.getElementById('nav-brand-title').textContent = BLACK_NOVEMBER_CONFIG.shortTitle;
+        document.getElementById('nav-brand-subtitle').textContent = BLACK_NOVEMBER_CONFIG.subtitle;
+        document.getElementById('nav-cta-text').textContent = BLACK_NOVEMBER_CONFIG.cta;
+
+        document.getElementById('hero-badge').textContent = BLACK_NOVEMBER_CONFIG.badge;
+        document.getElementById('hero-headline').innerHTML = BLACK_NOVEMBER_CONFIG.headlineHtml;
+        document.getElementById('hero-subheadline').textContent = BLACK_NOVEMBER_CONFIG.subheadline;
+        document.getElementById('hero-primary-cta').textContent = 'Shop The 3 VIP Bundles';
+        document.getElementById('hero-secondary-cta').textContent = 'Ask AI Style Concierge';
+        document.getElementById('hero-secondary-cta').setAttribute('href', '#concierge');
+
+        document.getElementById('metric-1-val').textContent = BLACK_NOVEMBER_CONFIG.metrics[0].val;
+        document.getElementById('metric-1-label').textContent = BLACK_NOVEMBER_CONFIG.metrics[0].label;
+        document.getElementById('metric-2-val').textContent = BLACK_NOVEMBER_CONFIG.metrics[1].val;
+        document.getElementById('metric-2-label').textContent = BLACK_NOVEMBER_CONFIG.metrics[1].label;
+        document.getElementById('metric-3-val').textContent = BLACK_NOVEMBER_CONFIG.metrics[2].val;
+        document.getElementById('metric-3-label').textContent = BLACK_NOVEMBER_CONFIG.metrics[2].label;
+
+        document.getElementById('chat-avatar').textContent = 'R';
+        document.getElementById('chat-widget-title').textContent = `Dr Jay's Black November VIP Desk`;
+        document.getElementById('chat-badge-pill').textContent = `VIP Vault Live`;
+
+        const chatContainer = document.getElementById('chat-messages');
+        chatContainer.innerHTML = '';
+        appendMessage('ai', BLACK_NOVEMBER_CONFIG.greeting());
+
+        const promptsContainer = document.getElementById('quick-prompts');
+        promptsContainer.innerHTML = '';
+        BLACK_NOVEMBER_CONFIG.prompts.forEach((p, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.onclick = () => triggerQuickPrompt(idx);
+          btn.className = 'text-xs px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-[#D4AF37]/20 border border-[#D4AF37]/30 text-zinc-200 hover:text-[#D4AF37] transition text-left';
+          btn.textContent = p.q;
+          promptsContainer.appendChild(btn);
+        });
+
+        document.getElementById('catalogue-eyebrow').textContent = 'BLACK NOVEMBER 2026 • CURATED LUXURY BUNDLES';
+        document.getElementById('catalogue-heading').innerHTML = `Dr Jay's Store — <span class="gold-gradient-text italic">Black November VIP Vault</span>`;
+        document.getElementById('catalogue-subtext').textContent = 'Select your preferred tier below. Every box includes serialized authenticity credentials and direct 1-click WhatsApp VIP Concierge checkout.';
+
+        const grid = document.getElementById('catalogue-grid');
+        grid.innerHTML = '';
+        BLACK_NOVEMBER_CONFIG.bundles.forEach((b, idx) => {
+          const waUrl = `https://wa.me/${WHATSAPP_CONCIERGE_NUMBER}?text=${encodeURIComponent(b.waText)}`;
+          const itemsListHtml = b.items.map(item => `
+            <li class="flex items-start gap-2.5 text-sm text-zinc-300">
+              <span class="text-[#D4AF37] mt-0.5">✦</span>
+              <span>${item}</span>
+            </li>
+          `).join('');
+
+          const card = document.createElement('div');
+          card.className = 'glass-card rounded-3xl p-7 flex flex-col justify-between hover:border-[#D4AF37] transition group relative overflow-hidden';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono mb-4">
+                <span class="px-3 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-semibold">${b.tag}</span>
+                <span class="text-zinc-400">${b.code}</span>
+              </div>
+              <h4 class="font-serif text-3xl text-white font-semibold mb-1 group-hover:text-[#D4AF37] transition">${b.title}</h4>
+              <p class="text-xs text-[#D4AF37] font-mono uppercase tracking-wider mb-5">${b.tagline}</p>
+              <ul class="space-y-2.5 mb-7 border-t border-white/10 pt-4">
+                ${itemsListHtml}
+              </ul>
+            </div>
+            <div class="pt-5 border-t border-white/10 space-y-4">
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs font-mono uppercase text-zinc-400">VIP Vault Price</span>
+                <span class="font-serif text-3xl font-bold text-[#D4AF37]">${b.price}</span>
+              </div>
+              <a
+                href="${waUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="gold-button w-full py-3.5 px-5 rounded-full font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 text-center"
+              >
+                <span>Order via WhatsApp VIP Concierge</span>
+                <span>→</span>
+              </a>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        document.getElementById('roi-eyebrow').textContent = 'SOVEREIGN GUARANTEES • LAGOS & WORLDWIDE DISPATCH';
+        document.getElementById('roi-heading').innerHTML = `Ordering for a Corporate Team or <span class="gold-gradient-text italic">Detty December Table</span>?`;
+        document.getElementById('roi-body').innerHTML = `Need multiple **CEO / IJGB Bespoke Boxes** or custom monogrammed corporate gifting across Victoria Island, Ikoyi, or Lekki Phase 1? Connect directly with **Dr Jay's VIP Concierge Desk** on WhatsApp for priority dispatch.`;
+        const directWa = `https://wa.me/${WHATSAPP_CONCIERGE_NUMBER}?text=${encodeURIComponent("Hello Dr Jay / Roadman Luxury VIP Desk, I would like to place a priority Black November VIP Box order.")}`;
+        document.getElementById('roi-cta-btn').setAttribute('href', directWa);
+        document.getElementById('roi-cta-btn').setAttribute('target', '_blank');
+        document.getElementById('roi-cta-btn').onclick = null;
+        document.getElementById('roi-cta-btn').textContent = 'Chat With VIP Concierge on WhatsApp';
+        document.getElementById('roi-subnote').textContent = 'Same-Day Lagos Chauffeur Drop • Worldwide DHL Express';
+        document.getElementById('copyright-brand').textContent = "DR JAY'S STORE / THE ROADMAN LUXURY";
+        return;
+      }
+
+      // DEFAULT B2B TROJAN HORSE PROTOTYPE MODE
       document.getElementById('page-title').textContent = `${activeBrand} — ${activeConfig.label} & AI Concierge`;
       document.getElementById('telemetry-params').textContent = `brand="${activeBrand}" • niche="${activeConfig.label}"`;
       document.getElementById('nav-monogram').textContent = activeBrand.charAt(0).toUpperCase();
@@ -491,12 +703,10 @@
       document.getElementById('nav-brand-subtitle').textContent = activeConfig.subtitle;
       document.getElementById('nav-cta-text').textContent = activeConfig.cta;
 
-      // Hero
       document.getElementById('hero-badge').textContent = activeConfig.badge;
       document.getElementById('hero-headline').innerHTML = activeConfig.headlineTemplate(activeBrand);
       document.getElementById('hero-subheadline').textContent = activeConfig.subheadline;
 
-      // Chat Widget
       document.getElementById('chat-avatar').textContent = activeBrand.charAt(0).toUpperCase();
       document.getElementById('chat-widget-title').textContent = `${activeBrand} AI Concierge`;
 
@@ -504,7 +714,6 @@
       chatContainer.innerHTML = '';
       appendMessage('ai', activeConfig.greeting(activeBrand));
 
-      // Quick Prompts
       const promptsContainer = document.getElementById('quick-prompts');
       promptsContainer.innerHTML = '';
       activeConfig.prompts.forEach((p, idx) => {
@@ -516,7 +725,6 @@
         promptsContainer.appendChild(btn);
       });
 
-      // Catalogue Cards
       document.getElementById('catalogue-heading').innerHTML = `Curated exclusively for <span class="gold-gradient-text italic">${activeBrand}</span>`;
       const grid = document.getElementById('catalogue-grid');
       grid.innerHTML = '';
@@ -545,7 +753,6 @@
         grid.appendChild(card);
       });
 
-      // Footer
       document.getElementById('footer-brand-highlight').textContent = activeBrand;
       document.getElementById('footer-brand-bold').textContent = activeBrand;
       document.getElementById('copyright-brand').textContent = activeBrand.toUpperCase();
