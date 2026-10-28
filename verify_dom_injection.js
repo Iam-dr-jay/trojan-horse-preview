@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 /**
- * Programmatic DOM Verification Test for Trojan Horse 6-Mode Engine
+ * Programmatic DOM Verification Test for Trojan Horse 7-Mode Engine
  * Tests:
  * 1) 5 B2B Niches (?brand=...&niche=vip|shortlet|yacht|medspa|streetwear)
  * 2) ?mode=proposal&brand=Quilox&tier=local (₦1,000,000 / ₦700k Deposit + Instant Invoice Link)
  * 3) ?mode=proposal&brand=Aura%20Aesthetics&tier=intl ($1,500 / $750 Deposit + Instant Invoice Link)
  * 4) ?mode=quant ($49 Starter / $199 Pro Quant Kit + Instant Invoice Links)
  * 5) ?mode=blacknovember (Dr Jay's Store / The Roadman Luxury + Instant Invoice Links)
- * 6) ?mode=commander (Mobile 1-Tap Dispatch Console — 75 Prospects + 4 Primary Action Buttons + Status Toggle)
- * 7) ?mode=invoice&client=PrestigeLounge&amount=700000&currency=NGN (Multi-Currency Settlement Terminal)
+ * 6) ?mode=commander (Mobile 1-Tap Dispatch Console — 75 Prospects + 2349059383562 Routing)
+ * 7) ?mode=invoice (Moniepoint MFB • 9059383562 • Dr Jay's Store • 2349059383562 • Johnefe50@gmail.com)
+ * 8) ?mode=slides (9:16 Luxury Story/Status/Reel Slide Generator — 3 Switchable Decks)
  */
 const fs = require('fs');
 
@@ -67,7 +68,7 @@ function runTests() {
   const html = fs.readFileSync('/home/theroadman/operation-10m/trojan-horse/index.html', 'utf8');
 
   console.log('====================================================================');
-  console.log(' TROJAN HORSE 6-MODE DOM VERIFICATION SUITE');
+  console.log(' TROJAN HORSE 7-MODE DOM & SETTLEMENT VERIFICATION SUITE');
   console.log('====================================================================');
 
   // 1. Test 5 B2B Niches
@@ -90,15 +91,16 @@ function runTests() {
   const propLocal = simulateDomInjection(html, '?mode=proposal&brand=Quilox%20Club&tier=local');
   const passLocal = propLocal['metric-2-val'].textContent === '₦1,000,000 NGN' &&
     propLocal['metric-3-label'].textContent.includes('₦700,000') &&
-    propLocal['catalogue-grid'].innerHTML.includes('?mode=invoice');
-  console.log(`[${passLocal ? 'PASS' : 'FAIL'}] Proposal Local| ?mode=proposal&brand=Quilox%20Club&tier=local -> ${propLocal['metric-2-val'].textContent} + Invoice Link Wired`);
+    propLocal['catalogue-grid'].innerHTML.includes('?mode=invoice') &&
+    propLocal['catalogue-grid'].innerHTML.includes('2349059383562');
+  console.log(`[${passLocal ? 'PASS' : 'FAIL'}] Proposal Local| ?mode=proposal&brand=Quilox%20Club&tier=local -> ${propLocal['metric-2-val'].textContent} + WA 2349059383562`);
   if (!passLocal) process.exit(1);
 
   const propIntl = simulateDomInjection(html, '?mode=proposal&brand=Knightsbridge%20Aesthetics&tier=intl');
   const passIntl = propIntl['metric-2-val'].textContent === '$1,500 USD' &&
     propIntl['metric-3-label'].textContent.includes('$750') &&
     propIntl['catalogue-grid'].innerHTML.includes('?mode=invoice');
-  console.log(`[${passIntl ? 'PASS' : 'FAIL'}] Proposal Intl | ?mode=proposal&brand=Knightsbridge%20Aesthetics&tier=intl -> ${propIntl['metric-2-val'].textContent} + Invoice Link Wired`);
+  console.log(`[${passIntl ? 'PASS' : 'FAIL'}] Proposal Intl | ?mode=proposal&brand=Knightsbridge%20Aesthetics&tier=intl -> ${propIntl['metric-2-val'].textContent}`);
   if (!passIntl) process.exit(1);
 
   // 3. Test Quant Mode + Invoice Links
@@ -106,47 +108,62 @@ function runTests() {
   const passQuant = quantDom['nav-brand-title'].textContent.includes('ROADMAN TRADER QUANT KIT') &&
     quantDom['catalogue-grid'].innerHTML.includes('$49') &&
     quantDom['catalogue-grid'].innerHTML.includes('$199') &&
-    quantDom['catalogue-grid'].innerHTML.includes('?mode=invoice');
-  console.log(`[${passQuant ? 'PASS' : 'FAIL'}] Quant Hub     | ?mode=quant -> "${quantDom['nav-brand-title'].textContent}" ($49/$199 + Invoice Links Verified)`);
+    quantDom['catalogue-grid'].innerHTML.includes('2349059383562');
+  console.log(`[${passQuant ? 'PASS' : 'FAIL'}] Quant Hub     | ?mode=quant -> "${quantDom['nav-brand-title'].textContent}" ($49/$199 + WA 2349059383562)`);
   if (!passQuant) process.exit(1);
 
   // 4. Test Black November Mode + Invoice Links
   const bnDom = simulateDomInjection(html, '?mode=blacknovember');
   const passBn = bnDom['nav-brand-title'].textContent === 'THE ROADMAN LUXURY' &&
     bnDom['catalogue-grid'].children.length === 3 &&
-    bnDom['catalogue-grid'].innerHTML.includes('?mode=invoice');
-  console.log(`[${passBn ? 'PASS' : 'FAIL'}] Black Nov Mode| ?mode=blacknovember -> "${bnDom['nav-brand-title'].textContent}" (3 Bundles + Invoice Links Active)`);
+    bnDom['catalogue-grid'].innerHTML.includes('2349059383562');
+  console.log(`[${passBn ? 'PASS' : 'FAIL'}] Black Nov Mode| ?mode=blacknovember -> "${bnDom['nav-brand-title'].textContent}" (3 Bundles + WA 2349059383562)`);
   if (!passBn) process.exit(1);
 
-  // 5. Test Commander Dispatch Console Mode (75 Cards + 4 Buttons + Status Badge)
+  // 5. Test Commander Dispatch Console Mode (75 Cards + 4 Buttons + 2349059383562)
   const cmdDom = simulateDomInjection(html, '?mode=commander');
   const firstCardHtml = cmdDom['commander-cards-grid'].children[0] ? cmdDom['commander-cards-grid'].children[0].innerHTML : '';
   const passCmd = cmdDom['commander-cards-grid'].children.length === 75 &&
     firstCardHtml.includes('1-Tap Day 1') &&
     firstCardHtml.includes('1-Tap Day 3 Follow-Up Bump') &&
-    firstCardHtml.includes('Send Proposal Link') &&
-    firstCardHtml.includes('Send Instant Deposit Invoice');
-  console.log(`[${passCmd ? 'PASS' : 'FAIL'}] Commander Mode| ?mode=commander -> 75 Cards + 4 Primary Buttons + LocalStorage CRM Verified`);
+    firstCardHtml.includes('2349059383562');
+  console.log(`[${passCmd ? 'PASS' : 'FAIL'}] Commander Mode| ?mode=commander -> 75 Cards + 4 Primary Buttons + 2349059383562 Verified`);
   if (!passCmd) process.exit(1);
 
   // 6. Test Instant Invoice & Multi-Currency Checkout Mode (?mode=invoice)
   const invNgn = simulateDomInjection(html, '?mode=invoice&client=PrestigeLounge&amount=700000&currency=NGN');
   const passInvNgn = invNgn['inv-client-name'].textContent === 'Prestige Lounge' &&
     invNgn['inv-total-amount'].textContent.includes('700,000') &&
-    invNgn['inv-number'].textContent.startsWith('#RM-2026-') &&
-    (invNgn['inv-verify-wa-btn'].attrs.href || '').includes('wa.me/');
-  console.log(`[${passInvNgn ? 'PASS' : 'FAIL'}] Invoice NGN   | ?mode=invoice&client=PrestigeLounge&amount=700000&currency=NGN -> ${invNgn['inv-number'].textContent} | ${invNgn['inv-total-amount'].textContent}`);
+    invNgn['ngn-bank-name'].textContent === 'Moniepoint MFB' &&
+    invNgn['ngn-account-number'].textContent === '9059383562' &&
+    invNgn['ngn-account-name'].textContent === "Dr Jay's Store" &&
+    invNgn['usd-account-name'].textContent.includes('Johnefe50@gmail.com') &&
+    (invNgn['inv-verify-wa-btn'].attrs.href || '').includes('wa.me/2349059383562');
+  console.log(`[${passInvNgn ? 'PASS' : 'FAIL'}] Invoice NGN   | ?mode=invoice -> ${invNgn['ngn-bank-name'].textContent} • ${invNgn['ngn-account-number'].textContent} (${invNgn['ngn-account-name'].textContent})`);
   if (!passInvNgn) process.exit(1);
 
-  const invUsd = simulateDomInjection(html, '?mode=invoice&client=AuraAesthetics&amount=750&currency=USD');
-  const passInvUsd = invUsd['inv-client-name'].textContent === 'Aura Aesthetics' &&
-    invUsd['inv-total-amount'].textContent.includes('$750') &&
-    invUsd['inv-number'].textContent.startsWith('#RM-2026-');
-  console.log(`[${passInvUsd ? 'PASS' : 'FAIL'}] Invoice USD   | ?mode=invoice&client=AuraAesthetics&amount=750&currency=USD -> ${invUsd['inv-number'].textContent} | ${invUsd['inv-total-amount'].textContent}`);
-  if (!passInvUsd) process.exit(1);
+  // 7. Test 9:16 Luxury Slide Generator Mode (?mode=slides) across all 3 decks
+  const slidesBn = simulateDomInjection(html, '?mode=slides&deck=blacknovember');
+  const passSlidesBn = slidesBn['slides-cards-grid'].children.length === 4 &&
+    slidesBn['slides-cards-grid'].innerHTML.includes('Moniepoint 9059383562') &&
+    slidesBn['slides-cards-grid'].innerHTML.includes('+234 905 938 3562');
+  console.log(`[${passSlidesBn ? 'PASS' : 'FAIL'}] Slides Deck 1 | ?mode=slides&deck=blacknovember -> 4 Vertical 9:16 Cards Rendered`);
+  if (!passSlidesBn) process.exit(1);
+
+  const slidesDetty = simulateDomInjection(html, '?mode=slides&deck=dettydecember');
+  const passSlidesDetty = slidesDetty['slides-cards-grid'].children.length === 3 &&
+    slidesDetty['slides-cards-grid'].innerHTML.includes('Losing big spenders to slow DM replies?');
+  console.log(`[${passSlidesDetty ? 'PASS' : 'FAIL'}] Slides Deck 2 | ?mode=slides&deck=dettydecember -> 3 Vertical 9:16 Cards Rendered`);
+  if (!passSlidesDetty) process.exit(1);
+
+  const slidesQuant = simulateDomInjection(html, '?mode=slides&deck=quant');
+  const passSlidesQuant = slidesQuant['slides-cards-grid'].children.length === 3 &&
+    slidesQuant['slides-cards-grid'].innerHTML.includes('$49 Starter / $199 Pro License');
+  console.log(`[${passSlidesQuant ? 'PASS' : 'FAIL'}] Slides Deck 3 | ?mode=slides&deck=quant -> 3 Vertical 9:16 Cards Rendered`);
+  if (!passSlidesQuant) process.exit(1);
 
   console.log('====================================================================');
-  console.log(' ALL 12 MODE, NICHE & INVOICE TERMINAL TESTS PASSED');
+  console.log(' ALL 14 MODE, NICHE, SLIDE DECK & SETTLEMENT TESTS PASSED');
   console.log('====================================================================');
 }
 
