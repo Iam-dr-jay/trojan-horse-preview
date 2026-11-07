@@ -7,7 +7,7 @@
  * 3) ?mode=proposal&brand=Aura%20Aesthetics&tier=intl ($1,500 / $750 Deposit + Instant Invoice Link)
  * 4) ?mode=quant ($49 Starter / $199 Pro Quant Kit + Instant Invoice Links)
  * 5) ?mode=blacknovember (Dr Jay's Store / The Roadman Luxury + Instant Invoice Links)
- * 6) ?mode=commander (Mobile 1-Tap Dispatch Console — 75 Prospects + 2349059383562 Routing)
+ * 6) ?mode=commander (Mobile 1-Tap Dispatch Console — 91 Prospects, including 16 GCC No-Website VIPs + 2349059383562 Routing)
  * 7) ?mode=invoice (Moniepoint MFB • 9059383562 • Dr Jay's Store • 2349059383562 • Johnefe50@gmail.com)
  * 8) ?mode=slides (9:16 Luxury Story/Status/Reel Slide Generator — 3 Switchable Decks)
  */
@@ -120,15 +120,19 @@ function runTests() {
   console.log(`[${passBn ? 'PASS' : 'FAIL'}] Black Nov Mode| ?mode=blacknovember -> "${bnDom['nav-brand-title'].textContent}" (3 Bundles + WA 2349059383562)`);
   if (!passBn) process.exit(1);
 
-  // 5. Test Commander Dispatch Console Mode (75 Cards + 4 Buttons + 2349059383562)
+  // 5. Test Commander Dispatch Console Mode (91 Cards including 16 GCC VIPs + 4 Buttons + 2349059383562)
   const cmdDom = simulateDomInjection(html, '?mode=commander');
   const firstCardHtml = cmdDom['commander-cards-grid'].children[0] ? cmdDom['commander-cards-grid'].children[0].innerHTML : '';
-  const passCmd = cmdDom['commander-cards-grid'].children.length === 75 &&
-    firstCardHtml.includes('1-Tap Day 1') &&
+  const passCmd = cmdDom['commander-cards-grid'].children.length === 91 &&
+    firstCardHtml.includes('World Class Exotics Used Car Trading') &&
+    firstCardHtml.includes('1-Tap Day 1 WhatsApp Pitch') &&
     firstCardHtml.includes('1-Tap Day 3 Follow-Up Bump') &&
     firstCardHtml.includes('2349059383562');
-  console.log(`[${passCmd ? 'PASS' : 'FAIL'}] Commander Mode| ?mode=commander -> 75 Cards + 4 Primary Buttons + 2349059383562 Verified`);
+  console.log(`[${passCmd ? 'PASS' : 'FAIL'}] Commander Mode| ?mode=commander -> 91 Cards (16 GCC VIPs first) + 4 Primary Buttons + 2349059383562 Verified`);
   if (!passCmd) process.exit(1);
+  const passGccFilter = html.includes("filterCommanderLeads('GCC No-Website VIPs')") && html.includes('GCC No-Website VIPs (16)');
+  console.log(`[${passGccFilter ? 'PASS' : 'FAIL'}] GCC Filter   | Dedicated GCC No-Website VIP filter pill is present`);
+  if (!passGccFilter) process.exit(1);
 
   // 6. Test Instant Invoice & Multi-Currency Checkout Mode (?mode=invoice)
   const invNgn = simulateDomInjection(html, '?mode=invoice&client=PrestigeLounge&amount=700000&currency=NGN');
