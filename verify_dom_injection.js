@@ -65,7 +65,7 @@ function simulateDomInjection(html, queryString) {
 }
 
 function runTests() {
-  const html = fs.readFileSync('/home/theroadman/operation-10m/trojan-horse/index.html', 'utf8');
+  const html = fs.readFileSync(`${__dirname}/index.html`, 'utf8');
 
   console.log('====================================================================');
   console.log(' TROJAN HORSE 7-MODE DOM & SETTLEMENT VERIFICATION SUITE');
