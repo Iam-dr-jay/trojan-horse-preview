@@ -127,7 +127,8 @@ function runTests() {
     firstCardHtml.includes('World Class Exotics Used Car Trading') &&
     firstCardHtml.includes('1-Tap Day 1 WhatsApp Pitch') &&
     firstCardHtml.includes('1-Tap Day 3 Follow-Up Bump') &&
-    firstCardHtml.includes('2349059383562');
+    firstCardHtml.includes('wa.me/971589081786') &&
+    html.includes('2349059383562');
   console.log(`[${passCmd ? 'PASS' : 'FAIL'}] Commander Mode| ?mode=commander -> 91 Cards (16 GCC VIPs first) + 4 Primary Buttons + 2349059383562 Verified`);
   if (!passCmd) process.exit(1);
   const passGccFilter = html.includes("filterCommanderLeads('GCC No-Website VIPs')") && html.includes('GCC No-Website VIPs (16)');
