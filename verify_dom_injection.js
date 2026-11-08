@@ -71,6 +71,21 @@ function runTests() {
   console.log(' TROJAN HORSE 7-MODE DOM & SETTLEMENT VERIFICATION SUITE');
   console.log('====================================================================');
 
+  // 0. Test Public Studio Experience (/)
+  const pubDom = simulateDomInjection(html, '');
+  const passPublic = pubDom['nav-brand-title'].textContent === 'THE ROADMAN' &&
+    !pubDom['public-studio-view'].classList.classes.has('hidden') &&
+    pubDom['standard-main-view'].classList.classes.has('hidden') &&
+    pubDom['commander-console-view'].classList.classes.has('hidden') &&
+    pubDom['invoice-terminal-view'].classList.classes.has('hidden') &&
+    html.includes('BUILD SOMETHING') &&
+    html.includes('PREMIUM DIGITAL EXPERIENCES') &&
+    html.includes('AI CONCIERGE SYSTEMS') &&
+    html.includes('BUSINESS AUTOMATION') &&
+    html.includes('ROADMAN CONCIERGE');
+  console.log(`[${passPublic ? 'PASS' : 'FAIL'}] Public Studio | / -> "${pubDom['nav-brand-title'].textContent}" (Hero + 3 Services + Work + Concierge Demo + 4-Step Process)`);
+  if (!passPublic) process.exit(1);
+
   // 1. Test 5 B2B Niches
   const b2bCases = [
     { query: '?brand=0808%20Lounge&niche=vip', expectedBrand: '0808 Lounge' },
